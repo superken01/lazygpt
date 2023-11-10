@@ -11,9 +11,13 @@ langchain = "^0.0.334"
 chainlit = "^0.7.501"
 
 
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+black = "^23.11.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-run = "lazygpt.cli:run"
+lazygpt = "lazygpt.cli:run"
