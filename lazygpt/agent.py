@@ -5,22 +5,12 @@ from langchain.agents.agent_toolkits import create_conversational_retrieval_agen
 from langchain.chat_models import AzureChatOpenAI, ChatOpenAI
 from langchain.embeddings import AzureOpenAIEmbeddings, OpenAIEmbeddings
 from langchain.schema.messages import SystemMessage
-from langchain.tools import ShellTool
-from langchain.tools.file_management import FileSearchTool, ReadFileTool, WriteFileTool
-from langchain_experimental.tools import PythonREPLTool
-
-# from tools.google import GoogleSearchTool
-# from tools.web import BrowseWebSiteTool
-
-# from langchain.tools.google_search.tool import GoogleSearchResults
-# from langchain.utilities import GoogleSearchAPIWrapper
-
 
 AZURE_OPENAI_DEPLOYMENT_GPT4 = os.getenv("AZURE_OPENAI_DEPLOYMENT_GPT4")
 AZURE_OPENAI_DEPLOYMENT_EMBEDDING = os.getenv("AZURE_OPENAI_DEPLOYMENT_EMBEDDING")
 
 
-def create_agent(system_message=None, streaming=False, verbose=False):
+def create_agent(system_message=None, tools=None, streaming=False, verbose=False):
     if openai.api_type == "azure":
         llm = AzureChatOpenAI(
             model="gpt-4",
@@ -43,13 +33,6 @@ def create_agent(system_message=None, streaming=False, verbose=False):
         )
         embeddings = OpenAIEmbeddings()
 
-    tools = [
-        ShellTool(),
-        PythonREPLTool(),
-        FileSearchTool(),
-        ReadFileTool(),
-        WriteFileTool(),
-    ]
     agent = create_conversational_retrieval_agent(
         llm,
         tools,

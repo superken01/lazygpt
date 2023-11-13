@@ -2,6 +2,10 @@ import os
 
 import chainlit as cl
 from agent import create_agent
+from langchain.tools import ShellTool
+from langchain.tools.file_management import FileSearchTool, ReadFileTool, WriteFileTool
+from langchain_experimental.tools import PythonREPLTool
+from tools.google import GoogleSearchTool
 
 os.makedirs(".lazygpt", exist_ok=True)
 os.makedirs(".lazygpt/files", exist_ok=True)
@@ -16,8 +20,17 @@ def start_chat():
 async def main(message: cl.Message):
     agent = cl.user_session.get("agent")
     if agent is None:
+        tools = [
+            ShellTool(),
+            PythonREPLTool(),
+            FileSearchTool(),
+            ReadFileTool(),
+            WriteFileTool(),
+            GoogleSearchTool(),
+        ]
         agent = create_agent(
             system_message="盡量使用function完成任務 儘量使用中文回答",
+            tools=tools,
             streaming=True,
             verbose=True,
         )
