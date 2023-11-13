@@ -12,6 +12,7 @@ langchain = "^0.0.334"
 langchain-experimental = "^0.0.40"
 chainlit = "^0.7.501"
 tiktoken = "^0.5.1"
+requests = "^2.31.0"
 
 
 [tool.poetry.group.dev.dependencies]
