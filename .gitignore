@@ -168,3 +168,5 @@ chainlit.md
 
 # pyenv
 .python-version
+
+.lazygpt/

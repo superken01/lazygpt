@@ -6,6 +6,8 @@ from langchain.chat_models import AzureChatOpenAI, ChatOpenAI
 from langchain.embeddings import AzureOpenAIEmbeddings, OpenAIEmbeddings
 from langchain.schema.messages import SystemMessage
 from langchain.tools import ShellTool
+from langchain.tools.file_management import FileSearchTool, ReadFileTool, WriteFileTool
+from langchain_experimental.tools import PythonREPLTool
 
 # from tools.google import GoogleSearchTool
 # from tools.web import BrowseWebSiteTool
@@ -43,6 +45,10 @@ def create_agent(system_message=None, streaming=False, verbose=False):
 
     tools = [
         ShellTool(),
+        PythonREPLTool(),
+        FileSearchTool(),
+        ReadFileTool(),
+        WriteFileTool(),
     ]
     agent = create_conversational_retrieval_agent(
         llm,

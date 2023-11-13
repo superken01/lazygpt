@@ -1,5 +1,10 @@
+import os
+
 import chainlit as cl
 from agent import create_agent
+
+os.makedirs(".lazygpt", exist_ok=True)
+os.makedirs(".lazygpt/files", exist_ok=True)
 
 
 @cl.on_chat_start
