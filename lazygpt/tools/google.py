@@ -12,7 +12,7 @@ GOOGLE_CSE_ID = os.getenv("GOOGLE_CSE_ID")
 
 
 class GoogleSearchInput(BaseModel):
-    query: str = Field(..., description="Question should be answered")
+    query: str = Field(..., description="Query for search.")
     num_results: int = Field(..., description="Number of results to be returned")
 
 
@@ -43,6 +43,7 @@ class GoogleSearchTool(BaseTool):
         result = response.json()
         ret = []
         for item in result["items"]:
+            print(item)
             ret.append(
                 {
                     "title": item["title"],

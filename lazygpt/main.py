@@ -29,7 +29,7 @@ async def main(message: cl.Message):
             GoogleSearchTool(),
         ]
         agent = create_agent(
-            system_message="盡量使用function完成任務 儘量使用中文回答",
+            system_message="盡量使用function完成任務",
             tools=tools,
             streaming=True,
             verbose=True,
