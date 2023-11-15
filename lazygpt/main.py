@@ -30,7 +30,7 @@ async def main(message: cl.Message):
             BrowseWebSiteTool(),
         ]
         agent = create_agent(
-            system_message="盡量使用function完成任務",
+            system_message="使用最適合的function完成任務",
             tools=tools,
             streaming=True,
             verbose=True,

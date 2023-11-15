@@ -61,7 +61,9 @@ class BrowseWebSiteTool(BaseTool):
         elif "application/json" in content_type:
             return response.text
         elif "application/pdf" in content_type:
-            return ""
+            return "無法讀取json"
+        else:
+            return response.text
 
     # async def _arun(
     #     self,
